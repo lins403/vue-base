@@ -1,7 +1,8 @@
 import { cached } from './event'
+import { isObject, isPlainObject } from './object'
 
-/* eslint-disable no-unused-vars */
-const utilsObj = {
+//--------------------------------------------/* utilsObj <Object> */--------------------------------------------
+export const utilsObj = {
   name: '',
   init: function () {},
   getName: function () {},
@@ -9,10 +10,8 @@ const utilsObj = {
     this.name = name
   }
 }
-// export default { utilObj }
 
-//--------------------------------------------/*  */--------------------------------------------
-
+//--------------------------------------------/* SharedUtils <Class> */--------------------------------------------
 /**
  * https://github.com/vuejs/vue/blob/dev/src/shared/util.js
  * @description: 通用工具类
@@ -24,17 +23,13 @@ export default class SharedUtils {
   _toString = Object.prototype.toString
 
   // 不能被实例使用，但可以被子类继承
-  static noop(a, b, c) {}
+  static noop() {}
 
   static isUndef(v) {
     return v === undefined || v === null
   }
   static isDef(v) {
     return v !== undefined && v !== null
-  }
-
-  static isObject(obj) {
-    return obj !== null && typeof obj === 'object'
   }
 
   static isPrimitive(value) {
@@ -50,11 +45,7 @@ export default class SharedUtils {
   }
 
   static toString(val) {
-    return val == null
-      ? ''
-      : Array.isArray(val) || (SharedUtils.isPlainObject(val) && val.toString === this._toString)
-      ? JSON.stringify(val, null, 2)
-      : String(val)
+    return val == null ? '' : Array.isArray(val) || (isPlainObject(val) && val.toString === this._toString) ? JSON.stringify(val, null, 2) : String(val)
   }
 
   static toNumber(val) {
@@ -96,7 +87,7 @@ export default class SharedUtils {
    * @return {*}
    */
   static looseEqual(a, b) {
-    looseEqual(a, b)
+    $_looseEqual(a, b)
   }
 
   /**
@@ -114,12 +105,12 @@ export default class SharedUtils {
     return expectsLowerCase ? val => map[val.toLowerCase()] : val => map[val]
   }
 }
-//--------------------------------------------/*  */--------------------------------------------
 
-function looseEqual(a, b) {
+//--------------------------------------------/* Auxiliary Functions */--------------------------------------------
+function $_looseEqual(a, b) {
   if (a === b) return true
-  const isObjectA = SharedUtils.isObject(a)
-  const isObjectB = SharedUtils.isObject(b)
+  const isObjectA = isObject(a)
+  const isObjectB = isObject(b)
   if (isObjectA && isObjectB) {
     try {
       const isArrayA = Array.isArray(a)
@@ -128,7 +119,7 @@ function looseEqual(a, b) {
         return (
           a.length === b.length &&
           a.every((e, i) => {
-            return looseEqual(e, b[i])
+            return $_looseEqual(e, b[i])
           })
         )
       } else if (a instanceof Date && b instanceof Date) {
@@ -139,7 +130,7 @@ function looseEqual(a, b) {
         return (
           keysA.length === keysB.length &&
           keysA.every(key => {
-            return looseEqual(a[key], b[key])
+            return $_looseEqual(a[key], b[key])
           })
         )
       } else {
@@ -154,3 +145,6 @@ function looseEqual(a, b) {
     return false
   }
 }
+
+//--------------------------------------------/* 扩展 */--------------------------------------------
+// [JavaScript 工具函数大全（新）](https://juejin.cn/post/6844903966526930951)

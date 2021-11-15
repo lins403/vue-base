@@ -1,3 +1,4 @@
+//--------------------------------------------/* deepClone */--------------------------------------------
 /**
  * This is just a simple version of deep copy that has a lot of edge cases bug.
  * If you want to use a perfect deep copy, use lodash's _.cloneDeep.
@@ -20,8 +21,17 @@ export function deepClone(source) {
   // return JSON.parse(JSON.stringify(source))
   return targetObj
 }
-//--------------------------------------------/*  */--------------------------------------------
 
+//--------------------------------------------/* isObject */--------------------------------------------
+/**
+ * @param {*} obj
+ * @return {boolean}
+ */
+export function isObject(obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+//--------------------------------------------/* isPlainObject */--------------------------------------------
 /**
  * @param {Object} obj
  * @return {boolean}
@@ -29,8 +39,19 @@ export function deepClone(source) {
 export function isPlainObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
-//--------------------------------------------/*  */--------------------------------------------
 
+//--------------------------------------------/* hasOwn */--------------------------------------------
+/**
+ * @description: Check whether an object has the property.
+ * @param {Object | Array<*>} obj
+ * @param {string} key
+ * @return {boolean}
+ */
+export function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key)
+}
+
+//--------------------------------------------/* isValidArrayIndex */--------------------------------------------
 /**
  * @description: Check if val is a valid array index.
  * @param {*} val
@@ -40,8 +61,8 @@ export function isValidArrayIndex(val) {
   const n = parseFloat(String(val))
   return n >= 0 && Math.floor(n) === n && isFinite(val)
 }
-//--------------------------------------------/*  */--------------------------------------------
 
+//--------------------------------------------/* removeItem <Array> */--------------------------------------------
 /**
  * @description: Remove an item from an array.
  * @param {Array} arr
@@ -56,8 +77,8 @@ export function removeItem(arr, item) {
     }
   }
 }
-//--------------------------------------------/*  */--------------------------------------------
 
+//--------------------------------------------/* extend */--------------------------------------------
 /**
  * @description: Mix properties into target object.
  * @param {*} to
@@ -70,20 +91,16 @@ export function extend(to, _from) {
   }
   return to
 }
-//--------------------------------------------/*  */--------------------------------------------
 
+//--------------------------------------------/* deepFlatten <Array> */--------------------------------------------
 /**
- * @description: Merge an Array of Objects into a single Object.
- * @param {Array<any>} arr
- * @return {Object}
+ * @description: 递归扁平化数组
+ * @param {Array} arr
+ * @return {Array}
  */
-export function toObject(arr) {
-  const res = {}
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i]) {
-      extend(res, arr[i])
-    }
-  }
-  return res
-}
+export const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
+
+/* 单层扁平化数组 */
+export const singleFlatten = arr => [].concat(...arr)
+
 //--------------------------------------------/*  */--------------------------------------------

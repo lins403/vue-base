@@ -1,3 +1,4 @@
+//--------------------------------------------/* once */--------------------------------------------
 /**
  * @description: Ensure a function is called only once.
  * @param {Function} fn
@@ -12,8 +13,8 @@ export const once = function (fn) {
     }
   }
 }
-//--------------------------------------------/*  */--------------------------------------------
 
+//--------------------------------------------/* cached */--------------------------------------------
 /**
  * @description: Create a cached version of a pure function.
  * @param {Function} fn
@@ -24,5 +25,19 @@ export function cached(fn) {
   return function cachedFn(str) {
     const hit = cache[str]
     return hit || (cache[str] = fn(str))
+  }
+}
+
+//--------------------------------------------/* errorHandler */--------------------------------------------
+/**
+ * @description: 捕获函数运行异常
+ * @param {*}
+ * @return {*}
+ */
+export const errorHandler = (fn, ...args) => {
+  try {
+    return fn(...args)
+  } catch (e) {
+    return e instanceof Error ? e : new Error(e)
   }
 }
