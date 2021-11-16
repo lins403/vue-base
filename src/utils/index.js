@@ -104,6 +104,14 @@ export default class SharedUtils {
     }
     return expectsLowerCase ? val => map[val.toLowerCase()] : val => map[val]
   }
+
+  /**
+   * @description: 根据条件反向筛选
+   */
+  static negate =
+    func =>
+    (...args) =>
+      !func(...args)
 }
 
 //--------------------------------------------/* Auxiliary Functions */--------------------------------------------

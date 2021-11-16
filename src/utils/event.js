@@ -36,8 +36,19 @@ export function cached(fn) {
  */
 export const errorHandler = (fn, ...args) => {
   try {
-    return fn(...args)
+    fn(...args)
   } catch (e) {
     return e instanceof Error ? e : new Error(e)
   }
+}
+
+//--------------------------------------------/* timeCost */--------------------------------------------
+/**
+ * @description: 同步函数运行时间统计
+ */
+export const timeCost = (fn, ...args) => {
+  const start = window.performance.now()
+  fn(...args)
+  const end = window.performance.now()
+  console.log('time cost => ', `${end - start}ms`)
 }
