@@ -42,13 +42,23 @@ export const errorHandler = (fn, ...args) => {
   }
 }
 
-//--------------------------------------------/* timeCost */--------------------------------------------
+//--------------------------------------------/* timeTaken */--------------------------------------------
 /**
  * @description: 同步函数运行时间统计
  */
-export const timeCost = (fn, ...args) => {
+export const timeTaken = callback => {
+  console.time('timeTaken')
+  const r = callback()
+  console.timeEnd('timeTaken')
+  return r
+}
+const timeCost = (fn, ...args) => {
   const start = window.performance.now()
-  fn(...args)
+  const r = fn(...args)
   const end = window.performance.now()
   console.log('time cost => ', `${end - start}ms`)
+  return r
 }
+
+console.log(timeTaken(() => Math.pow(2, 10))) //timeTaken: 0.01611328125 ms
+console.log(timeCost(() => Math.pow(2, 10))) //time cost =>  0ms
