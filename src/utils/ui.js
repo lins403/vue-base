@@ -60,3 +60,5 @@ export const currentScreenSize = () => {
       : window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
   return width >= 1200 ? 'xl' : width >= 992 ? 'lg' : width >= 768 ? 'md' : 'sm'
 }
+
+//--------------------------------------------/*  */--------------------------------------------

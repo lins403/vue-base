@@ -1,0 +1,64 @@
+<!--
+ * @Description: css使用js变量
+ * from https://juejin.cn/post/6844903840626507784#heading-24
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        margin: 1em;
+      }
+      div.test:hover {
+        background-color: var(--bg-hover-color);
+        font-size: var(--hover-font-size);
+      }
+      div.test:hover::after {
+        margin-left: 1em;
+        content: var(--hover-content);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" :style="cssProps">
+      <div>
+        Hover text:
+        <input type="text" v-model="hoverContent" />
+      </div>
+      <div>
+        Hover color:
+        <input type="color" v-model="bgHoverColor" />
+      </div>
+
+      <div class="test">Hover over me</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: function () {
+          return {
+            baseFontSize: 1,
+            bgHoverColor: '#00cc00',
+            hoverContent: 'Hovering!'
+          }
+        },
+        computed: {
+          cssProps() {
+            return {
+              '--hover-font-size': this.baseFontSize * 2 + 'em',
+              '--bg-hover-color': this.bgHoverColor,
+              '--hover-content': JSON.stringify(this.hoverContent)
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

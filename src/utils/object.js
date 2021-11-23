@@ -40,17 +40,6 @@ export function isPlainObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
-//--------------------------------------------/* hasOwn */--------------------------------------------
-/**
- * @description: Check whether an object has the property.
- * @param {Object | Array<*>} obj
- * @param {string} key
- * @return {boolean}
- */
-export function hasOwn(obj, key) {
-  return Object.prototype.hasOwnProperty.call(obj, key)
-}
-
 //--------------------------------------------/* isValidArrayIndex */--------------------------------------------
 /**
  * @description: Check if val is a valid array index.
