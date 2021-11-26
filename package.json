@@ -27,6 +27,19 @@
     "stylelint-config-recommended-scss": "^5.0.2",
     "stylelint-prettier": "^2.0.0"
   },
+  "browserslist": {
+    "development": [
+      "chrome 92-96"
+    ],
+    "production": [
+      "> 1%",
+      "last 2 versions",
+      "not ie <= 8"
+    ],
+    "ssr": [
+      "node 12"
+    ]
+  },
   "lint-staged": {
     "*.{js,vue}": [
       "eslint --fix",
