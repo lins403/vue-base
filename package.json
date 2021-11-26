@@ -42,18 +42,11 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.{scss,less,styl,css}": [
       "stylelint --fix",
-      "prettier --write",
-      "git add ."
+      "prettier --write"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
