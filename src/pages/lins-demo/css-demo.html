@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/vs2015.min.css" />
+    <style>
+      @media screen and (min-width: 1200px) {
+        body {
+          --row-section-size: 2;
+        }
+      }
+      @media screen and (max-width: 1159px) {
+        body {
+          --row-section-size: 1;
+        }
+      }
+      .container {
+        counter-reset: list;
+        padding: 1em 2em;
+        /* display: flex;
+        flex-flow: row wrap; */
+        -moz-column-count: var(--row-section-size);
+        -webkit-column-count: var(--row-section-size);
+        column-count: var(--row-section-size);
+        column-gap: var(--row-section-size);
+      }
+      .list {
+        /* !!! */
+        break-inside: avoid;
+        position: relative;
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+      }
+      h2::before {
+        counter-increment: list;
+        content: counter(list) '、';
+      }
+    </style>
+    <style>
+      .triangle-up {
+        /*上三角形*/
+        width: 0px;
+        height: 0px;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid blue;
+        border-left: 10px solid transparent;
+      }
+      .triangle-down {
+        /*下三角形*/
+        width: 0px;
+        height: 0px;
+        border-top: 10px solid red;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+      }
+
+      .truncate-text {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 200px;
+      }
+      .excerpt {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .border-image-box1 {
+        border: 20px solid transparent;
+        padding: 20px;
+        border-image: url('https://mdn.mozillademos.org/files/4127/border.png') 20;
+      }
+      .border-image-box2 {
+        border: 20px solid transparent;
+        padding: 20px;
+        border-image: linear-gradient(red 49%, yellow 50%) 20;
+      }
+      .border-image-box3 {
+        border: 20px solid;
+        border-image: linear-gradient(red, yellow) 10;
+        padding: 20px;
+      }
+      div[class*='border-image-box'] {
+        margin-bottom: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- -------------------------------------------------------------------------------------------------------- -->
+      <div class="list">
+        <h2>三角形</h2>
+        <div class="item">
+          <div class="triangle-up"></div>
+          <div class="triangle-down"></div>
+          <pre>
+<code class="language-scss">
+  /* 上三角形 */
+  .triangle-up {
+    width: 0px;
+    height: 0px;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid blue;
+    border-left: 10px solid transparent;
+  }
+
+  /* 下三角形 */
+  .triangle-down {
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid red;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+  }
+</code>
+          </pre>
+        </div>
+      </div>
+      <!-- -------------------------------------------------------------------------------------------------------- -->
+      <div class="list">
+        <h2>省略号</h2>
+        <div class="item">
+          <p class="truncate-text">If I exceed one line's width, I will be truncated.</p>
+          <p class="excerpt">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod enim eget ultricies sollicitudin. Nunc aliquam arcu arcu, non suscipit metus
+            luctus id. Aliquam sodales turpis ipsum, in vehicula dui tempor sit amet. Nullam quis urna erat. Pellentesque mattis dolor purus. Aliquam nisl urna,
+            tempor a euismod a, placerat in mauris. Phasellus neque quam, dapibus quis nunc at, feugiat suscipit tortor. Duis vel posuere dolor. Phasellus risus
+            erat, lobortis et mi vel, viverra faucibus lectus. Etiam ut posuere sapien. Nulla ultrices dui turpis, interdum consectetur urna tempus at.
+          </p>
+          <pre>
+<code class="language-css">
+  .truncate-text {
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* multi-lines */
+  .excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</code>
+          </pre>
+        </div>
+      </div>
+      <!-- -------------------------------------------------------------------------------------------------------- -->
+      <div class="list">
+        <h2>border-image</h2>
+        <div class="item">
+          <div class="border-image-box1"></div>
+          <div class="border-image-box2"></div>
+          <div class="border-image-box3"></div>
+        </div>
+        <pre>
+<code>
+  .box1 {
+    border: 20px solid transparent;
+    padding: 20px;
+    border-image: url('https://mdn.mozillademos.org/files/4127/border.png') 20;
+  }
+  .box2 {
+    border: 20px solid transparent;
+    padding: 20px;
+    border-image: linear-gradient(red 49%, yellow 50%) 20;
+  }
+  .box3 {
+    border: 20px solid;
+    border-image: linear-gradient(red, yellow) 10;
+    padding: 20px;
+  }
+</code>
+        </pre>
+      </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll()
+    </script>
+  </body>
+</html>
