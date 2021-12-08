@@ -1,7 +1,6 @@
-// https://cn.vuejs.org/v2/guide/transitions.html
-<script>
-/* eslint-disable */
-Vue.component('my-special-transition', {
+/* eslint-disable no-unused-vars */
+// source: https://cn.vuejs.org/v2/guide/transitions.html
+export default {
   functional: true,
   render: function (createElement, context) {
     var data = {
@@ -20,5 +19,4 @@ Vue.component('my-special-transition', {
     }
     return createElement('transition', data, context.children)
   }
-})
-</script>
+}
