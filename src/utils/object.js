@@ -92,4 +92,13 @@ export const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? 
 /* 单层扁平化数组 */
 export const singleFlatten = arr => [].concat(...arr)
 
-//--------------------------------------------/*  */--------------------------------------------
+//--------------------------------------------/* obj2url */--------------------------------------------
+/**
+ * @description: obj => urlparams
+ * @param {Object} obj
+ * @return {String}
+ */
+export const obj2url = obj =>
+  Object.keys(obj)
+    .map(key => `${key}=${obj[key]}`)
+    .join('&')

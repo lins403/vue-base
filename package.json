@@ -1,5 +1,5 @@
 {
-  "name": "lins-template",
+  "name": "vue2-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -31,6 +31,10 @@
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-recommended-scss": "^5.0.2",
     "stylelint-prettier": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lins403/vue2-boilerplate.git"
   },
   "browserslist": {
     "development": [

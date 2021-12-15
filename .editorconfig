@@ -15,6 +15,8 @@ end_of_line = lf
 insert_final_newline = true
 # 删除一行中的前后空格
 trim_trailing_whitespace = true
+# 限定每行最多字符
+max_line_length = 160
 
 # 匹配md结尾的文件
 [*.md]
