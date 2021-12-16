@@ -62,3 +62,16 @@ export const currentScreenSize = () => {
 }
 
 //--------------------------------------------/*  */--------------------------------------------
+export const createElement = str => {
+  const el = document.createElement('div')
+  el.innerHTML = str
+  return el.firstElementChild
+}
+// const el = createElement(
+//   `<div class="container">
+//     <p>Hello!</p>
+//   </div>`
+// );
+// const divNode = document.createElement('div')
+// divNode.innerHTML = 'hello world'
+// document.body.appendChild(divNode)

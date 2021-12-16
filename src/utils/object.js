@@ -92,6 +92,9 @@ export const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? 
 /* 单层扁平化数组 */
 export const singleFlatten = arr => [].concat(...arr)
 
+export const objFlatten = arr => arr.reduce((pv, cv) => Object.assign(pv, cv))
+// objFlatten([{a:1},{a:2,b:3},{'hello':true}])  //{a: 2, b: 3, hello: true}
+
 //--------------------------------------------/* obj2url */--------------------------------------------
 /**
  * @description: obj => urlparams
