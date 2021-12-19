@@ -75,3 +75,14 @@ export const createElement = str => {
 // const divNode = document.createElement('div')
 // divNode.innerHTML = 'hello world'
 // document.body.appendChild(divNode)
+
+//--------------------------------------------/*  */--------------------------------------------
+export const insertImage = (dataUrl, aimNode, urlParams) => {
+  let newImg = document.createElement('img')
+  newImg = Object.assign(newImg, { src: dataUrl, ...urlParams })
+  aimNode.appendChild(newImg)
+}
+// eslint-disable-next-line no-undef
+insertImage(canvas.toDataURL(), document.body, {
+  width: 200
+})
