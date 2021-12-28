@@ -21,7 +21,7 @@
   </basic-container>
 </template>
 <script>
-import { $_api_1, $_api_2, $_api_3 } from '@/api/system/applet-menu'
+import { _api1, _api2, _api3 } from '@/api/system/applet-menu'
 import { throttle, debounce } from 'lodash'
 
 // 区分开设置的属性和接口参数的roleAlias值
@@ -153,7 +153,7 @@ export default {
     this.containerLoading = true
     this.blockStatus = true
     // 获取路由目录（树）
-    const result = await $_api_1()
+    const result = await _api1()
     this.baseRoutes = result.data.data.menu
     // 获取对应角色的权限路由
     this.getRoutes()
@@ -161,8 +161,8 @@ export default {
   methods: {
     async getRoutes() {
       // 可以让两个接口同步启动而不被阻塞
-      const ZhangPromise = $_api_2({ roleAlias: 'Alice' })
-      const WangPromise = $_api_2({ roleAlias: 'Bob' })
+      const ZhangPromise = _api2({ roleAlias: 'Alice' })
+      const WangPromise = _api2({ roleAlias: 'Bob' })
       const ZhangData = (await ZhangPromise).data.data,
         WangData = (await WangPromise).data.data
       this.roleList.map(role => {
@@ -197,12 +197,12 @@ export default {
         topMenuIds: []
       }
       const checkedKeys = this.$refs.menuTree.getCheckedKeys()
-      const res1 = await $_api_3({
+      const res1 = await _api3({
         ...form,
         menuIds: checkedKeys[Zhang],
         roleIds: new Array(this.roleIds['Alice'])
       })
-      const res2 = await $_api_3({
+      const res2 = await _api3({
         ...form,
         menuIds: checkedKeys[Wang],
         roleIds: new Array(this.roleIds['Bob'])
@@ -221,20 +221,20 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .menu {
   &__container {
-    // min-height: 60vh;
-    min-height: 29em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     align-items: baseline;
+    justify-content: space-around;
+    // min-height: 60vh;
+    min-height: 29em;
     .basic-container {
       width: 40%;
       .menu__box--title {
         text-align: center;
       }
       &__card > .el-card__body {
-        padding: 1em 3em;
         min-height: 22em;
+        padding: 1em 3em;
       }
     }
   }

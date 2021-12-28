@@ -154,24 +154,24 @@ export default {
 <style lang="scss" scoped>
 $border-style: 1px solid #e8eaec;
 ::v-deep table {
+  margin: auto;
+  border-collapse: collapse;
   border-right: $border-style;
   border-bottom: $border-style;
-  border-collapse: collapse;
-  margin: auto;
 
   tbody tr:first-child td,
   tr td:first-child[rowspan] {
-    text-align: center;
     font-weight: bold;
+    text-align: center;
   }
 
   td {
-    border-left: $border-style;
-    border-top: $border-style;
-    white-space: wrap;
-    text-align: left;
     min-width: 100px;
     padding: 4px;
+    text-align: left;
+    white-space: wrap;
+    border-top: $border-style;
+    border-left: $border-style;
   }
 }
 
@@ -201,10 +201,10 @@ $border-style: 1px solid #e8eaec;
 }
 /*定义滚动条轨道内阴影+圆角*/
 ::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 0.5em;
   -webkit-box-shadow: inset 0 0 0.25em rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 0 0.25em rgba(0, 0, 0, 0.3);
-  border-radius: 0.5em;
-  background-color: #f5f5f5;
 }
 /*定义滑块内阴影+圆角*/
 ::-webkit-scrollbar-thumb {

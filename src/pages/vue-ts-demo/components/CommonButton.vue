@@ -28,10 +28,10 @@ export default class CommonButton extends Vue {
 
 <style lang="scss">
 .button {
-  border: 1px solid #000;
-  line-height: 2em;
-  padding: 0 1em;
   display: inline-block;
+  padding: 0 1em;
+  line-height: 2em;
+  border: 1px solid #000;
   border-radius: 3px;
 
   &.size-small {

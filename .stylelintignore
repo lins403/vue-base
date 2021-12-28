@@ -1,4 +1,9 @@
 /dist/*
 /public/*
 public/*
-*.vue
+
+**/*.js
+**/*.jsx
+**/*.tsx
+**/*.ts
+# **/*.vue

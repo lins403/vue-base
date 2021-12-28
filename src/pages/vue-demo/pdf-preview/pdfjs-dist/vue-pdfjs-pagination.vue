@@ -123,8 +123,8 @@ export default {
 .preview-pdf {
   h1 {
     margin: 30px auto;
+    font-family: '宋体', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
     text-align: center;
-    font-family: '宋体';
     letter-spacing: 2px;
   }
 }
