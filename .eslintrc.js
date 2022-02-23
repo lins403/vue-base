@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 'off',
     'no-console': 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/no-v-html': 'off',
     'vue/html-self-closing': [
       'error',
@@ -29,5 +30,13 @@ module.exports = {
         math: 'always'
       }
     ]
-  }
+  },
+  overrides: [
+    {
+      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.(spec|test).{j,t}s?(x)'],
+      env: {
+        jest: true
+      }
+    }
+  ]
 }

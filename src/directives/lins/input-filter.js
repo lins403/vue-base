@@ -125,7 +125,7 @@ function elementValidateError(el, newValue, userBinding) {
   }
 }
 
-//--------------------------------------------/*  */--------------------------------------------
+//==================================/* 钩子函数参数 */==================================
 
 // <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
 // name: "demo"

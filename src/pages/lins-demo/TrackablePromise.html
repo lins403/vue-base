@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 继承Promise对象，将用户自定义的callback处理器作为构造函数参数，
+      // 作为对TrackablePromise对象除resolve与reject以外的状态处理方法,
+      // TrackablePromise.notify()，用于跟踪内部状态
+      class TrackablePromise extends Promise {
+        constructor(executor) {
+          const notifyHandlers = []
+          super((resolve, reject) => {
+            // 使用自定义构造函数拓展了用于打印消息的自定义callback
+            return executor(resolve, reject, status => {
+              notifyHandlers.map(handler => {
+                handler(status)
+              })
+            })
+          })
+          this.notifyHandlers = notifyHandlers
+        }
+
+        // 定义原型方法，接受一个handler，并将其间接传递给TrackablePromise.notify()使用
+        notify(notifyHandler) {
+          this.notifyHandlers.push(notifyHandler)
+          return this
+        }
+      }
+
+      // 实例化TrackablePromise时，传入用于打印promise执行进度的callback
+      let p = new TrackablePromise((resolve, reject, notify) => {
+        function countdown(x) {
+          if (x > 0) {
+            notify(`${20 * x}% remaining`)
+            setTimeout(() => countdown(x - 1), 1000)
+          } else {
+            resolve()
+          }
+        }
+        countdown(5)
+      })
+      p.notify(x => setTimeout(console.log, 0, 'progress:', x))
+      p.then(() => setTimeout(console.log, 0, 'completed'))
+    </script>
+  </body>
+</html>

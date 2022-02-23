@@ -3,23 +3,32 @@ import { Message } from 'element-ui'
 import { isPlainObject, hasOwn } from './object'
 import SharedUtils from './index'
 
-//--------------------------------------------/* SingletonMessage <element-ui> */--------------------------------------------
-let _messageInstance = null
+//==================================/* SingletonMessage <element-ui> */==================================
+// let _messageInstance = null
+// export function SingletonMessage(options) {
+//   // 最多创建一条消息实例
+//   // if (!_messageInstance) _messageInstance = Message(options)
+
+//   // 最多同时存在一条消息
+//   if (_messageInstance) {
+//     _messageInstance.close()
+//   }
+//   _messageInstance = Message(options)
+// }
+
 /**
  * @description: element-ui最多允许存在一条message
  * @param {Object | string} options
  * @return {void}
  */
-export function SingletonMessage(options) {
-  // 最多创建一条消息实例
-  // if (!_messageInstance) _messageInstance = Message(options)
+export const SingletonMessage = (function () {
+  let _messageInstance = null
 
-  // 最多同时存在一条消息
-  if (_messageInstance) {
-    _messageInstance.close()
+  return function (options) {
+    if (_messageInstance) _messageInstance.close()
+    _messageInstance = Message(options)
   }
-  _messageInstance = Message(options)
-}
+})()
 ;['success', 'warning', 'info', 'error'].forEach(type => {
   SingletonMessage[type] = options => {
     if (isPlainObject(options) && !isVNode(options)) {
@@ -32,7 +41,7 @@ export function isVNode(node) {
   return node !== null && typeof node === 'object' && hasOwn(node, 'componentOptions')
 }
 
-//--------------------------------------------/* isHTMLTag */--------------------------------------------
+//==================================/* isHTMLTag */==================================
 /**
  * @description:
  * @param {*}
@@ -52,7 +61,7 @@ export const isHTMLTag = SharedUtils.makeMap(
     'content,element,shadow,template,blockquote,iframe,tfoot'
 )
 
-//--------------------------------------------/* currentScreenSize */--------------------------------------------
+//==================================/* currentScreenSize */==================================
 export const currentScreenSize = () => {
   const width =
     window.innerWidth && document.documentElement.clientWidth
@@ -61,7 +70,7 @@ export const currentScreenSize = () => {
   return width >= 1200 ? 'xl' : width >= 992 ? 'lg' : width >= 768 ? 'md' : 'sm'
 }
 
-//--------------------------------------------/*  */--------------------------------------------
+//==================================/*  */==================================
 export const createElement = str => {
   const el = document.createElement('div')
   el.innerHTML = str
@@ -76,7 +85,14 @@ export const createElement = str => {
 // divNode.innerHTML = 'hello world'
 // document.body.appendChild(divNode)
 
-//--------------------------------------------/*  */--------------------------------------------
+//============================================/*  */============================================
+export const createClassElement = className => {
+  const el = document.createElement('div')
+  el.classList.add(className)
+  document.body.appendChild(el)
+}
+
+//==================================/*  */==================================
 export const insertImage = (dataUrl, aimNode, urlParams) => {
   let newImg = document.createElement('img')
   newImg = Object.assign(newImg, { src: dataUrl, ...urlParams })
@@ -86,3 +102,21 @@ export const insertImage = (dataUrl, aimNode, urlParams) => {
 insertImage(canvas.toDataURL(), document.body, {
   width: 200
 })
+
+//============================================/*  */============================================
+export function htmlEscape(text) {
+  return text.replace(/[<>"&]/g, function (match) {
+    switch (match) {
+      case '<':
+        return '&lt;'
+      case '>':
+        return '&gt;'
+      case '&':
+        return '&amp;'
+      case '"':
+        return '&quot;'
+    }
+  })
+}
+console.log(htmlEscape('<p class="greeting">Hello world!</p>'))
+// '&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;'

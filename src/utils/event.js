@@ -1,11 +1,12 @@
-//--------------------------------------------/* sleep */--------------------------------------------
+//==================================/* sleep */==================================
 export const sleep = interval => {
   return new Promise(resolve => {
     setTimeout(resolve, interval)
   })
 }
+// await new Promise(resolve => { setTimeout(resolve, 200) })
 
-//--------------------------------------------/* once */--------------------------------------------
+//==================================/* once */==================================
 /**
  * @description: Ensure a function is called only once.
  * @param {Function} fn
@@ -21,7 +22,7 @@ export const once = function (fn) {
   }
 }
 
-//--------------------------------------------/* cached */--------------------------------------------
+//==================================/* cached */==================================
 /**
  * @description: Create a cached version of a pure function.
  * @param {Function} fn
@@ -35,7 +36,7 @@ export function cached(fn) {
   }
 }
 
-//--------------------------------------------/* errorHandler */--------------------------------------------
+//==================================/* errorHandler */==================================
 /**
  * @description: 捕获函数运行异常
  * @param {*}
@@ -49,7 +50,7 @@ export const errorHandler = (fn, ...args) => {
   }
 }
 
-//--------------------------------------------/* timeTaken */--------------------------------------------
+//==================================/* timeTaken */==================================
 /**
  * @description: 同步函数运行时间统计
  */
@@ -70,14 +71,14 @@ const timeCost = (fn, ...args) => {
 console.log(timeTaken(() => Math.pow(2, 10))) //timeTaken: 0.01611328125 ms
 console.log(timeCost(() => Math.pow(2, 10))) //time cost =>  0ms
 
-//--------------------------------------------/* curry */--------------------------------------------
+//==================================/* curry */==================================
 export const curry = (fn, ...args) => (fn.length <= args.length ? fn(...args) : (..._args) => curry(fn, ...args, ..._args))
 
 const add = (x, y, z) => x + y + z
 const addMore = curry(add)
 console.log(addMore(1, 2, 3), addMore(1, 2)(3), addMore(1)(2)(3), addMore(1)(2, 3))
 
-//--------------------------------------------/* createEventHub */--------------------------------------------
+//==================================/* createEventHub */==================================
 /**
  * from https://www.30secondsofcode.org/js/s/create-event-hub
  * @description: 发布-订阅
@@ -100,7 +101,7 @@ export const createEventHub = () => ({
   }
 })
 
-//--------------------------------------------/* debouncePromise */--------------------------------------------
+//==================================/* debouncePromise */==================================
 /**
  * from https://www.30secondsofcode.org/js/s/debounce-promise
  * @description: 多个不同Promise的节流效果

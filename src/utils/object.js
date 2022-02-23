@@ -1,4 +1,4 @@
-//--------------------------------------------/* deepClone */--------------------------------------------
+//==================================/* deepClone */==================================
 /**
  * This is just a simple version of deep copy that has a lot of edge cases bug.
  * If you want to use a perfect deep copy, use lodash's _.cloneDeep.
@@ -22,7 +22,7 @@ export function deepClone(source) {
   return targetObj
 }
 
-//--------------------------------------------/* isObject */--------------------------------------------
+//==================================/* isObject */==================================
 /**
  * @param {*} obj
  * @return {boolean}
@@ -31,7 +31,7 @@ export function isObject(obj) {
   return obj !== null && typeof obj === 'object'
 }
 
-//--------------------------------------------/* isPlainObject */--------------------------------------------
+//==================================/* isPlainObject */==================================
 /**
  * @param {Object} obj
  * @return {boolean}
@@ -40,7 +40,7 @@ export function isPlainObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
-//--------------------------------------------/* isValidArrayIndex */--------------------------------------------
+//==================================/* isValidArrayIndex */==================================
 /**
  * @description: Check if val is a valid array index.
  * @param {*} val
@@ -51,7 +51,7 @@ export function isValidArrayIndex(val) {
   return n >= 0 && Math.floor(n) === n && isFinite(val)
 }
 
-//--------------------------------------------/* removeItem <Array> */--------------------------------------------
+//==================================/* removeItem <Array> */==================================
 /**
  * @description: Remove an item from an array.
  * @param {Array} arr
@@ -67,7 +67,7 @@ export function removeItem(arr, item) {
   }
 }
 
-//--------------------------------------------/* extend */--------------------------------------------
+//==================================/* extend */==================================
 /**
  * @description: Mix properties into target object.
  * @param {*} to
@@ -81,7 +81,7 @@ export function extend(to, _from) {
   return to
 }
 
-//--------------------------------------------/* deepFlatten <Array> */--------------------------------------------
+//==================================/* deepFlatten <Array> */==================================
 /**
  * @description: 递归扁平化数组
  * @param {Array} arr
@@ -96,7 +96,7 @@ export const singleFlatten = arr => arr.flat()
 export const objFlatten = arr => arr.reduce((pv, cv) => Object.assign(pv, cv))
 // objFlatten([{a:1},{a:2,b:3},{'hello':true}])  //{a: 2, b: 3, hello: true}
 
-//--------------------------------------------/* obj2url */--------------------------------------------
+//==================================/* obj2url */==================================
 /**
  * @description: obj => urlparams
  * @param {Object} obj
@@ -106,3 +106,18 @@ export const obj2url = obj =>
   Object.keys(obj)
     .map(key => `${key}=${obj[key]}`)
     .join('&')
+
+// 获取嵌套对象属性的值
+export const getValue = (data, target) => {
+  for (const key of Object.keys(data)) {
+    if (key === target) {
+      return data[key]
+    }
+    if (isPlainObject(data[key])) {
+      const result = getValue(data[key], target)
+      if (result) {
+        return result
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 /* eslint-disable */
 // source：https://juejin.cn/post/7039607610793803789
 // 添加水印需要在pdf.js中的web->viewer.js中添加代码，在js中找到textLayer = this.textLayerFactory.createTextLayerBuilder(textLayerDiv, this.id - 1, this.viewport, this.textLayerMode === _ui_utils.TextLayerMode.ENABLE_ENHANCE, this.eventBus);这行代码，在这行代码前面添加以下代码
-//--------------------------------------------/* 给文件添加水印 */--------------------------------------------
+//==================================/* 给文件添加水印 */==================================
 var cover = document.createElement('div')
 cover.className = 'cover'
 function formateTime() {
@@ -140,7 +140,7 @@ for (var i = 0, len = cover.length; i < len; i++) {
   cover[i].style.height = canvasWrapper.style.height
 } //加水印结束
 
-//--------------------------------------------/* 禁用保存、复制粘贴 */--------------------------------------------
+//==================================/* 禁用保存、复制粘贴 */==================================
 // 在 viewe.html > body内容最后加入<script>，其中放入👇🏻代码
 // 直接禁用右键
 document.oncontextmenu = function (ev) {

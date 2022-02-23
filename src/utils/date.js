@@ -1,4 +1,4 @@
-//--------------------------------------------/* parseTimeFormat */--------------------------------------------
+//==================================/* parseTimeFormat */==================================
 /**
  * @description: 按格式解析为时间字符串
  * @param {(Object|string|number)} time
@@ -50,7 +50,7 @@ export function parseTimeFormat(time, cFormat) {
   return time_str
 }
 
-//--------------------------------------------/* instantMessageTime */--------------------------------------------
+//==================================/* instantMessageTime */==================================
 /**
  * @description: 适用于即时聊天的时间格式化
  * @param {number} time
@@ -85,7 +85,7 @@ export function instantMessageTime(time, option) {
   }
 }
 
-//--------------------------------------------/* npm libraries */--------------------------------------------
+//==================================/* npm libraries */==================================
 // 相关库
 // https://www.npmjs.com/package/moment     290.1K(gizpped: 72.3K)  【支持的语言太多，可以通过webpack优化体积】
 // https://www.npmjs.com/package/date-fns   21.2K(gizpped: 5.9K) 【支持模块化引用，比dayjs更适合复杂的应用场景】

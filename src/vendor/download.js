@@ -1,4 +1,4 @@
-//--------------------------------------------/* 纯JS导出text文件 */--------------------------------------------
+//==================================/* 纯JS导出text文件 */==================================
 export function original_download(arrData, fileName) {
   const a = document.createElement('a')
   a.href = URL.createObjectURL(

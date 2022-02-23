@@ -1,4 +1,4 @@
-//--------------------------------------------/* Array2Tree */--------------------------------------------
+//==================================/* Array2Tree */==================================
 /**
  * @description: 数组转树形
  * @param {*}
@@ -23,7 +23,7 @@ const comments = [
 console.log(Array2Tree(comments))
 console.log(nest(comments))
 
-//--------------------------------------------/* ArrayShuffle */--------------------------------------------
+//==================================/* ArrayShuffle */==================================
 /**
  * @description: Fisher-Yates算法随机排序
  * @param {Array} arr
@@ -40,3 +40,11 @@ export const ArrayShuffle = ([...arr]) => {
 
 const foo = [1, 2, 3, 4, 5]
 ArrayShuffle(foo)
+
+//============================================/* regEscape */============================================
+export const regEscape = function (str) {
+  var specials = new RegExp('[.*+?|()\\[\\]{}\\\\]', 'g') // .*+?|()[]{}\
+  return str.replace(specials, '\\$&')
+}
+const regStr = regEscape('[ab]=a+b') //=> '\\[ab\\]=a\\+b'
+new RegExp(regStr) //=> /\[ab\]=a\+b/

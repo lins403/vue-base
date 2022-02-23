@@ -1,7 +1,7 @@
 import { cached } from './event'
 import { isObject, isPlainObject } from './object'
 
-//--------------------------------------------/* utilsObj <Object> */--------------------------------------------
+//==================================/* utilsObj <Object> */==================================
 export const utilsObj = {
   name: '',
   init: function () {},
@@ -11,7 +11,7 @@ export const utilsObj = {
   }
 }
 
-//--------------------------------------------/* SharedUtils <Class> */--------------------------------------------
+//==================================/* SharedUtils <Class> */==================================
 /**
  * https://github.com/vuejs/vue/blob/dev/src/shared/util.js
  * @description: 通用工具类
@@ -114,7 +114,7 @@ export default class SharedUtils {
       !func(...args)
 }
 
-//--------------------------------------------/* Auxiliary Functions */--------------------------------------------
+//==================================/* Auxiliary Functions */==================================
 function $_looseEqual(a, b) {
   if (a === b) return true
   const isObjectA = isObject(a)
@@ -154,5 +154,5 @@ function $_looseEqual(a, b) {
   }
 }
 
-//--------------------------------------------/* 扩展 */--------------------------------------------
+//==================================/* 扩展 */==================================
 // [JavaScript 工具函数大全（新）](https://juejin.cn/post/6844903966526930951)

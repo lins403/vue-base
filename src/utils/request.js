@@ -5,7 +5,7 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-//--------------------------------------------/* base config */--------------------------------------------
+//==================================/* base config */==================================
 export const ContentTypeMap = {
   urlencoded: 'application/x-www-form-urlencoded',
   json: 'application/json;charset=utf-8',
@@ -14,7 +14,7 @@ export const ContentTypeMap = {
 }
 axios.defaults.headers['Content-Type'] = ContentTypeMap.json
 
-//--------------------------------------------/* axios instance */--------------------------------------------
+//==================================/* axios instance */==================================
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -22,7 +22,7 @@ const service = axios.create({
   timeout: 5000 // request timeout
 })
 
-//--------------------------------------------/* request interceptor */--------------------------------------------
+//==================================/* request interceptor */==================================
 // request interceptor
 service.interceptors.request.use(
   config => {
@@ -43,7 +43,7 @@ service.interceptors.request.use(
   }
 )
 
-//--------------------------------------------/* response interceptor */--------------------------------------------
+//==================================/* response interceptor */==================================
 // response interceptor
 service.interceptors.response.use(
   /**
@@ -98,7 +98,7 @@ service.interceptors.response.use(
 
 export default service
 
-//--------------------------------------------/* 示例 */--------------------------------------------
+//==================================/* 示例 */==================================
 // request({
 //   headers: {
 //     'Content-Type': 'multipart/form-data'
